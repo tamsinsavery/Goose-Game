@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-    /// <summary>
-    /// This section will contain code for an AI as seen in this tutorial https://www.youtube.com/watch?v=vsPzo7IVTHw
-    /// </summary>
-    public enum AIMode {  followPlayer, followWaypoints };
-
-    [Header("AI settings")]
-    public AIMode aiMode;
-
-    Vector3 targetPosition = Vector3.zero;
-    Transform targetTransform = null;
-
+    
     //movement variables
     public float driftFactor = 0.95f;
-    public float acceleration =-30.0f;
-    public float maxSpeed = 20; 
+    public float acceleration =30.0f;
+    public float maxSpeed = 200; 
     public float turnSpeed =3.5f;
 
     float accelerationInput = 0;
@@ -71,8 +61,13 @@ public class CarMovement : MonoBehaviour
 
         if (velocityVsForward < -maxSpeed * 0.5f && accelerationInput < 0)
         {
-            return;     //if max speed reached return from fn, more force is not applied
+            return;     //limits spd to 50% going backwards
         }
+
+        //if (rb.velocity.sqrMagnitude > maxSpeed * maxSpeed && accelerationInput == 0)
+        //{
+        //    return; //also limits speed in any direction
+        //}
 
         if (accelerationInput == 0)
         {
@@ -87,7 +82,7 @@ public class CarMovement : MonoBehaviour
 
         Vector3 engineForceVector = transform.forward * accelerationInput * acceleration;
 
-        rb.AddForce(engineForceVector, ForceMode.Force);
+        rb.AddForce(engineForceVector, ForceMode.Acceleration);
 
     }
 
@@ -101,12 +96,12 @@ public class CarMovement : MonoBehaviour
 
         rotationAngle -= turnSpeedInput * turnSpeed *minSpeedToAllowTurning;    //multiplying by minspd variable means that car cannot turn if not moving
                                                                                 //and turning becomes more sensitive as spd increases
-        Quaternion rotation = Quaternion.Euler(rotationAngle, 0, 0);
+        Quaternion rotation = Quaternion.Euler(0, rotationAngle, 0);
         rb.MoveRotation(rotation);
 
     }
 
-    public void SetInputVector(Vector3 inputVector)
+    public void SetInputVector(Vector2 inputVector)
     {
         turnSpeedInput = inputVector.x;
         accelerationInput = inputVector.y;
