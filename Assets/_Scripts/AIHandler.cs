@@ -26,9 +26,34 @@ public class AIHandler : MonoBehaviour
     {
         Vector2 inputVector = Vector2.zero;
 
-        inputVector.x = 0.01f;
-        inputVector.y = 1.0f;  
+        switch (aiMode) 
+        {
+            case AIMode.followPlayer:
+                FollowPlayer();
+                break;
+
+        }
+    
 
         carMovement.SetInputVector(inputVector);
     }
+
+    void FollowPlayer()
+    {
+        if (targetTransform == null)
+        {
+            targetTransform = GameObject.FindGameObjectWithTag("Player").transform; //if no target transform finds player and sets target to that 
+        }
+
+        if (targetTransform != null)
+        {
+            targetPosition = targetTransform.position;  //makes the target position the target transform (so car will try to go towards the target)
+        }
+    }
+
+    float TurnTowardsTarget()
+    {
+
+    }
 }
+
