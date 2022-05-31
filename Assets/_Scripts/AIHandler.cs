@@ -26,8 +26,8 @@ public class AIHandler : MonoBehaviour
     {
         Vector2 inputVector = Vector2.zero;
 
-        inputVector.x = 1.0f;
-        inputVector.y = 0f;  
+        inputVector.x = 0.01f;
+        inputVector.y = 1.0f;  
 
         carMovement.SetInputVector(inputVector);
     }

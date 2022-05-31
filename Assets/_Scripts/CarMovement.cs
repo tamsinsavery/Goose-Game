@@ -17,6 +17,8 @@ public class CarMovement : MonoBehaviour
     float rotationAngle = 0;
 
     float velocityVsForward;
+    float minSpeedToAllowTurning = 2;
+    float turningCheck;
 
     private Rigidbody rb;
 
@@ -88,14 +90,14 @@ public class CarMovement : MonoBehaviour
 
     void ApplySteering()
     {
-        float minSpeedToAllowTurning = (rb.velocity.magnitude / 8);  //gives a minimum value of speed that needs to be reached before can turn
+        turningCheck = Vector3.Dot(transform.forward, rb.velocity);  //how much forward the car is going 
+        
 
-        minSpeedToAllowTurning = Mathf.Clamp01(minSpeedToAllowTurning);     //then clamps the variable to give a factor between 0and 1
-                                                                            //so, if car speed is 0 then this variable will be 0
-
-
-        rotationAngle -= turnSpeedInput * turnSpeed *minSpeedToAllowTurning;    //multiplying by minspd variable means that car cannot turn if not moving
-                                                                                //and turning becomes more sensitive as spd increases
+        if (turningCheck>minSpeedToAllowTurning)
+        {
+            rotationAngle -= turnSpeedInput * turnSpeed;
+            Debug.Log("At least it did something??");//multiplying by minspd variable means that car cannot turn if not moving
+        }                                                                      //and turning becomes more sensitive as spd increases
         Quaternion rotation = Quaternion.Euler(0, rotationAngle, 0);
         rb.MoveRotation(rotation);
 
@@ -111,7 +113,7 @@ public class CarMovement : MonoBehaviour
     {
         Vector3 forwardVelocity = transform.forward * Vector3.Dot(rb.velocity, transform.forward);       //first calculate how much fwd velocity the car has
 
-        Vector3 rightVelocity = transform.right * Vector3.Dot(rb.velocity,transform.right);     //finds how much the car is going sideways...
+        Vector3 rightVelocity = transform.right * Vector3.Dot(rb.velocity, transform.right);     //finds how much the car is going sideways...
 
         rb.velocity = forwardVelocity + (rightVelocity * driftFactor);  //takes away some of the sideways velocity based on drift factor - drift factor 0 means no drift
 
