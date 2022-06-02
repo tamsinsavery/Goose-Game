@@ -14,6 +14,7 @@ public class AIHandler : MonoBehaviour
     Vector3 targetPosition = Vector3.zero;
     Transform targetTransform = null;
 
+    NodeSystem currentnode = null;
 
     // Start is called before the first frame update
     void Start()
