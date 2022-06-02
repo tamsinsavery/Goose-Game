@@ -96,8 +96,8 @@ public class CarMovement : MonoBehaviour
         if (turningCheck>minSpeedToAllowTurning)
         {
             rotationAngle -= turnSpeedInput * turnSpeed;
-            Debug.Log("At least it did something??");//multiplying by minspd variable means that car cannot turn if not moving
-        }                                                                      //and turning becomes more sensitive as spd increases
+            
+        }                                                                      
         Quaternion rotation = Quaternion.Euler(0, rotationAngle, 0);
         rb.MoveRotation(rotation);
 

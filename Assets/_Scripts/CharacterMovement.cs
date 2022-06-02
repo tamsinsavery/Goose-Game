@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CharacterMovement : MonoBehaviour
 {
     public Animator animator;
-    public float moveSpeed = 10;
+    public float moveSpeed = 30;
     public float rotateSpeed = 100;
     public float maxSpeed = 50;
 
@@ -44,15 +44,7 @@ public class CharacterMovement : MonoBehaviour
         {
             animator.Play("Idle A");
         }
-        if (Input.GetAxis("Vertical")!=0 && moveSpeed<maxSpeed)
-        {
-            moveSpeed+= 0.1f;
-
-        }
-        else
-        {
-            moveSpeed = 10;
-        }
+        
 
         if (sceneName == "ExampleRace")
         {
