@@ -57,14 +57,15 @@ public class AIHandler : MonoBehaviour
     float TurnTowardsTarget()
     {
         Vector3 vectorToTarget = targetPosition - transform.position;   //gets the angle between the target vector and the transform position
-        vectorToTarget.Normalize();     //gives the vector a magnitude of 1 instead of a very large number, this gives direction of target
+        //vectorToTarget.Normalize();     //gives the vector a magnitude of 1 instead of a very large number, this gives direction of target
 
-        float angleToTarget = Vector3.SignedAngle(vectorToTarget, transform.forward, transform.forward); //finds the angle between the target direction and the car's forward direction
+        float angleToTarget = Vector3.Angle(vectorToTarget, transform.forward); //finds the angle between the target direction and the car's forward direction
 
         //angleToTarget *= -1;        //inverts the angle, giving the angle the car needs to turn to line up with the target 
 
-        float steerAmount = angleToTarget / 360;     //This means that due to the clamp in next line, any angle over 45 degrees produces the same steer input as 45 
+        float steerAmount = angleToTarget/45;     //This means that due to the clamp in next line, any angle over 45 degrees produces the same steer input as 45 
         steerAmount = Mathf.Clamp(steerAmount, -1.0f, 1.0f);
+        steerAmount = steerAmount / 40;
         return steerAmount;
         
     }

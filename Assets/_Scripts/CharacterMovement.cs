@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class CharacterMovement : MonoBehaviour
 {
     public Animator animator;
-    public float moveSpeed = 30;
-    public float rotateSpeed = 100;
+    public float moveSpeed = 20;
+    public float rotateSpeed = 120;
     public float maxSpeed = 50;
 
     CharacterController cc;
