@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class AIHandler : MonoBehaviour
 {
@@ -15,11 +16,14 @@ public class AIHandler : MonoBehaviour
     Transform targetTransform = null;
 
     NodeSystem currentnode = null;
+    NodeSystem[] allNodes;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         carMovement = GetComponent<CarMovement>();
+        allNodes = FindObjectsOfType<NodeSystem>();
+        aiMode = AIMode.followWaypoints;
     }
 
     //Update is called once per frame
@@ -32,14 +36,45 @@ public class AIHandler : MonoBehaviour
             case AIMode.followPlayer:
                 FollowPlayer();
                 break;
-
+            case AIMode.followWaypoints:
+                FollowWayPoints();
+                break;
         }
 
         inputVector.x = TurnTowardsTarget();
-        inputVector.y = 1.0f;
+        inputVector.y = 0.5f;
     
 
         carMovement.SetInputVector(inputVector);
+    }
+
+    void FollowWayPoints()
+    {
+        if (currentnode == null)
+        {
+            currentnode = FindClosestNode();
+        }
+
+        if (currentnode != null)
+        {
+            targetPosition = currentnode.transform.position;//if there is a waypoint, set the target position to it
+
+            float distanceToNode = (targetPosition - transform.position).magnitude; //check how close car is to the target 
+            
+            if (distanceToNode <= currentnode.minDistanceToReachNode)
+            {
+                currentnode = currentnode.nextWayPointNode[Random.Range(0, currentnode.nextWayPointNode.Length)]; //picks a next node at random from all waypoints connected to current waypoint
+
+            }
+        }
+    }
+
+    NodeSystem FindClosestNode()
+    {
+        return allNodes
+            .OrderBy(t => Vector3.Distance(transform.position, t.transform.position))  //so, checks distance between current position and the node in the array
+                                                                                    //then orders the nodes by the distance from the current position
+            .FirstOrDefault();
     }
 
     void FollowPlayer()
@@ -66,7 +101,7 @@ public class AIHandler : MonoBehaviour
 
         float steerAmount = angleToTarget/45;     //This means that due to the clamp in next line, any angle over 45 degrees produces the same steer input as 45 
         steerAmount = Mathf.Clamp(steerAmount, -1.0f, 1.0f);
-        steerAmount = steerAmount / 40;
+        steerAmount = steerAmount / 50;
         return steerAmount;
         
     }
