@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9047987086691126567}
   - component: {fileID: 9047987086691126566}
   m_Layer: 0
-  m_Name: RTI_Blue
+  m_Name: AICar
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,9 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405f5c0b1c1226c41861a9fbe77cdd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiMode: 0
   driftFactor: 0.95
-  acceleration: -30
+  acceleration: 30
   maxSpeed: 20
   turnSpeed: 140
 --- !u!114 &9047987086691126566
@@ -94,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f41a12e6c6bebe4ea56d60bb8b439a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiMode: 0
 --- !u!1 &1956139643420822395
 GameObject:
   m_ObjectHideFlags: 0
