@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396d0672732b0c043a43f39eadaf57ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWayPointNode: []
+  nextWayPointNode:
+  - {fileID: 0}
   minDistanceToReachNode: 5
