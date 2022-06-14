@@ -50,7 +50,7 @@ public class AIHandler : MonoBehaviour
 
     float ApplyThrottleOrBrake(float inputx)
     {
-        return 0.55f - Mathf.Abs(inputx)/2.0f;
+        return 0.65f - Mathf.Abs(inputx)*20.0f;
         //this uses the absolute value of input (so acceleration is always positive) and divides it by 2, so max acceleration is 0.5
         //subtracts this value from 0.55 so there is always some acceleration 
     }

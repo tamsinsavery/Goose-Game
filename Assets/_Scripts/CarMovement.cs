@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-    
+    public float currentSpeed;
     //movement variables
-    public float driftFactor = 0.95f;
+    public float driftFactor = 0.90f;
     public float acceleration =30.0f;
     public float maxSpeed = 200; 
     public float turnSpeed =3.5f;
@@ -41,6 +41,7 @@ public class CarMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        currentSpeed = rb.velocity.magnitude;
         ApplyEngineForce();
 
         ApplySteering();

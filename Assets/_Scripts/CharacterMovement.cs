@@ -29,6 +29,7 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         
+        
         if (sceneName == "Scene1")
         {
             if (Input.GetKeyDown(KeyCode.Return)){
