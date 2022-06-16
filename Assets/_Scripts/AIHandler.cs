@@ -10,14 +10,15 @@ public class AIHandler : MonoBehaviour
     public enum AIMode { followPlayer, followWaypoints };
 
     [Header("AI settings")]
-    public AIMode aiMode;
+    public AIMode aiMode; 
     
-    
-    public float acceleration;
+    public float acceleration = 0.50f;
+
+      
 
     Vector3 targetPosition = Vector3.zero;
     Transform targetTransform = null;
-
+    
     NodeSystem currentnode = null;
     NodeSystem[] allNodes;
 
@@ -26,7 +27,8 @@ public class AIHandler : MonoBehaviour
     {
         carMovement = GetComponent<CarMovement>();
         allNodes = FindObjectsOfType<NodeSystem>();
-        aiMode = AIMode.followWaypoints;
+        
+        
     }
 
     //Update is called once per frame
@@ -44,8 +46,10 @@ public class AIHandler : MonoBehaviour
                 break;
         }
 
+        
+
         inputVector.x = TurnTowardsTarget();
-        inputVector.y = 0.60f;//ApplyThrottleOrBrake(inputVector.x);
+        inputVector.y = acceleration;//ApplyThrottleOrBrake(inputVector.x);
     
 
         carMovement.SetInputVector(inputVector);
@@ -60,6 +64,7 @@ public class AIHandler : MonoBehaviour
 
     void FollowWayPoints()
     {
+        
         if (currentnode == null)
         {
             currentnode = FindClosestNode();
