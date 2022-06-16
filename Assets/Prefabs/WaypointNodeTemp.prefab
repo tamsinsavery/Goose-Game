@@ -110,4 +110,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextWayPointNode:
   - {fileID: 0}
+  - {fileID: 0}
   minDistanceToReachNode: 10
