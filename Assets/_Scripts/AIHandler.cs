@@ -11,6 +11,9 @@ public class AIHandler : MonoBehaviour
 
     [Header("AI settings")]
     public AIMode aiMode;
+    
+    
+    public float acceleration;
 
     Vector3 targetPosition = Vector3.zero;
     Transform targetTransform = null;

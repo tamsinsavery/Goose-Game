@@ -6,10 +6,10 @@ public class CarMovement : MonoBehaviour
 {
     public float currentSpeed;
     //movement variables
-    public float driftFactor = 0.90f;
+    public float driftFactor = 0.95f;
     public float acceleration =30.0f;
-    public float maxSpeed = 200; 
-    public float turnSpeed =3.5f;
+    public float maxSpeed = 20; 
+    public float turnSpeed =140f;
 
     float accelerationInput = 0;
     float turnSpeedInput = 0;
