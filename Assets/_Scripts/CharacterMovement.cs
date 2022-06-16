@@ -47,12 +47,11 @@ public class CharacterMovement : MonoBehaviour
         }
         
 
-        if (sceneName == "ExampleRace")
-        {
+        
             transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
 
             cc.Move(transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
-        }
+        
         cc.SimpleMove(Physics.gravity);
         //if (Input.GetAxis("Horizontal") !=0)
         //{
