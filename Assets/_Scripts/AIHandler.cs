@@ -7,14 +7,15 @@ public class AIHandler : MonoBehaviour
 {
     private CarMovement carMovement;
 
-    public enum AIMode { followPlayer, followWaypoints };
+    //public enum AIMode { followPlayer, followWaypoints };
 
-    [Header("AI settings")]
-    public AIMode aiMode; 
+    //[Header("AI settings")]
+    //public AIMode aiMode; 
     
     public float acceleration = 0.50f;
 
-      
+    float turnAdd = 0;
+
 
     Vector3 targetPosition = Vector3.zero;
     Transform targetTransform = null;
@@ -30,25 +31,41 @@ public class AIHandler : MonoBehaviour
         
         
     }
+    IEnumerator waiter()
+    {
+        Debug.Log("Waited");
+        yield return new WaitForSeconds(3);
+    }
+    //Update is called once per frame\
+    private void Update()
+    {
+        
+    }
 
-    //Update is called once per frame
     void FixedUpdate()
     {
         Vector2 inputVector = Vector2.zero;
-
-        switch (aiMode) 
-        {
-            case AIMode.followPlayer:
-                FollowPlayer();
-                break;
-            case AIMode.followWaypoints:
-                FollowWayPoints();
-                break;
-        }
-
         
+        FollowWayPoints();
 
-        inputVector.x = TurnTowardsTarget();
+        int inaccuracy = Random.Range(0, 200);
+        float turn;
+
+        if (inaccuracy == 42)
+        {
+            turn = TurnTowardsTarget();
+            turnAdd = 0.02f;
+            inputVector.x = turn + turnAdd;
+            inputVector.y = acceleration;
+            carMovement.SetInputVector(inputVector);
+            StartCoroutine(waiter());
+            Debug.Log("Turn adjustment");
+
+        }
+        
+        
+        inputVector.x = TurnTowardsTarget(); 
+        
         inputVector.y = acceleration;//ApplyThrottleOrBrake(inputVector.x);
     
 
