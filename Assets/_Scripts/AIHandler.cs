@@ -13,6 +13,8 @@ public class AIHandler : MonoBehaviour
     //public AIMode aiMode; 
     
     public float acceleration = 0.50f;
+    public float inaccuracy;
+    float steerAdjust; 
 
     float turnAdd = 0;
 
@@ -48,23 +50,21 @@ public class AIHandler : MonoBehaviour
         
         FollowWayPoints();
 
-        int inaccuracy = Random.Range(0, 200);
-        float turn;
+       
+        //if (inaccuracy == 42)
+        //{
+        //    turn = TurnTowardsTarget();
+        //    turnAdd = 0.2f;
+        //    inputVector.x = turn + turnAdd;
+        //    inputVector.y = acceleration;
+        //    carMovement.SetInputVector(inputVector);
+        //    StartCoroutine(waiter());
+        //    Debug.Log("Turn adjustment");
 
-        if (inaccuracy == 42)
-        {
-            turn = TurnTowardsTarget();
-            turnAdd = 0.02f;
-            inputVector.x = turn + turnAdd;
-            inputVector.y = acceleration;
-            carMovement.SetInputVector(inputVector);
-            StartCoroutine(waiter());
-            Debug.Log("Turn adjustment");
+        //}
 
-        }
-        
-        
-        inputVector.x = TurnTowardsTarget(); 
+
+        inputVector.x = TurnTowardsTarget() + steerAdjust; 
         
         inputVector.y = acceleration;//ApplyThrottleOrBrake(inputVector.x);
     
@@ -95,6 +95,7 @@ public class AIHandler : MonoBehaviour
             
             if (distanceToNode <= currentnode.minDistanceToReachNode)
             {
+                steerAdjust = Random.RandomRange(-inaccuracy, inaccuracy); 
                 currentnode = currentnode.nextWayPointNode[Random.Range(0, currentnode.nextWayPointNode.Length)]; //picks a next node at random from all waypoints connected to current waypoint
 
             }
