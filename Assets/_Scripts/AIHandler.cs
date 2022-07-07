@@ -18,6 +18,7 @@ public class AIHandler : MonoBehaviour
 
     float turnAdd = 0;
 
+    
 
     Vector3 targetPosition = Vector3.zero;
     Transform targetTransform = null;
@@ -33,11 +34,7 @@ public class AIHandler : MonoBehaviour
         
         
     }
-    IEnumerator waiter()
-    {
-        Debug.Log("Waited");
-        yield return new WaitForSeconds(3);
-    }
+    
     //Update is called once per frame\
     private void Update()
     {
