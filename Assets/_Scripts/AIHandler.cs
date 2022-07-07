@@ -5,6 +5,7 @@ using System.Linq;
 
 public class AIHandler : MonoBehaviour
 {
+    GameManager gameManager;
     private CarMovement carMovement;
 
     //public enum AIMode { followPlayer, followWaypoints };
@@ -61,10 +62,11 @@ public class AIHandler : MonoBehaviour
         //}
 
 
-        inputVector.x = TurnTowardsTarget() + steerAdjust; 
-        
-        inputVector.y = acceleration;//ApplyThrottleOrBrake(inputVector.x);
-    
+        inputVector.x = TurnTowardsTarget() + steerAdjust;
+        if (GameManager.canMove != false)
+        {
+            inputVector.y = acceleration;//ApplyThrottleOrBrake(inputVector.x);
+        }
 
         carMovement.SetInputVector(inputVector);
     }

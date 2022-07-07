@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
+    GameManager gameManager;
     public Animator animator;
     public float moveSpeed = 20;
     public float rotateSpeed = 120;
@@ -45,12 +46,15 @@ public class CharacterMovement : MonoBehaviour
         {
             animator.Play("Idle A");
         }
-        
 
-        
+
+        if (GameManager.canMove != false)
+        {
             transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
 
             cc.Move(transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
+
+        }
         
         cc.SimpleMove(Physics.gravity);
         //if (Input.GetAxis("Horizontal") !=0)
