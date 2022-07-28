@@ -29,15 +29,18 @@ public class CarMovement : MonoBehaviour
     //animation
 
 
-
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         //target = null;
-
+        
         
     }
+
+    
 
     private void FixedUpdate()
     {

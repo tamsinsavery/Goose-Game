@@ -32,14 +32,18 @@ public class AIHandler : MonoBehaviour
     {
         carMovement = GetComponent<CarMovement>();
         allNodes = FindObjectsOfType<NodeSystem>();
-        
-        
+
+        carLineCrossCount = 0;
     }
     
     //Update is called once per frame\
     private void Update()
     {
-        
+        if (carLineCrossCount == (gameManager.laps + 1))        //+1 to allow for the first line cross when starting 
+        {
+            GameManager.placeCounter++;
+
+        }
     }
 
     void FixedUpdate()
@@ -94,7 +98,7 @@ public class AIHandler : MonoBehaviour
             
             if (distanceToNode <= currentnode.minDistanceToReachNode)
             {
-                steerAdjust = Random.RandomRange(-inaccuracy, inaccuracy); 
+                steerAdjust = Random.Range(-inaccuracy, inaccuracy); 
                 currentnode = currentnode.nextWayPointNode[Random.Range(0, currentnode.nextWayPointNode.Length)]; //picks a next node at random from all waypoints connected to current waypoint
 
             }
@@ -140,4 +144,16 @@ public class AIHandler : MonoBehaviour
         return steerAmount;
         
     }
+
+    private int carLineCrossCount;
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "FinishLine")
+        {
+            carLineCrossCount++;
+
+        }
+    }
+    
 }

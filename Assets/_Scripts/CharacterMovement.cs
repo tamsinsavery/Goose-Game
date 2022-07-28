@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         cc = GetComponent<CharacterController>();
         sceneName = currentScene.name;
-        
+        finishLineCrossCount = 0;
 
 
 }
@@ -55,8 +55,12 @@ public class CharacterMovement : MonoBehaviour
             cc.Move(transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
 
         }
-        
+        string output = GameManager.gameTime.ToString();
+        Debug.Log(output);
+        Debug.Log(finishLineCrossCount);        //TESTING STUFF, REMOVE
         cc.SimpleMove(Physics.gravity);
+
+
         //if (Input.GetAxis("Horizontal") !=0)
         //{
         //    animator.Play("Walk");
@@ -64,5 +68,18 @@ public class CharacterMovement : MonoBehaviour
         //{
         //    animator.Play("Idle A");
         //}
+
+        
+
     }
+    public static int finishLineCrossCount;
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "FinishLine")
+        {
+            finishLineCrossCount++;
+
+        }
+    }
+
 }
