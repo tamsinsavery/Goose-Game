@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CharacterMovement : MonoBehaviour
 {
     GameManager gameManager;
-    public Animator animator;
+    
     public float moveSpeed = 20;
     public float rotateSpeed = 120;
     public float maxSpeed = 50;
@@ -38,14 +38,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            animator.Play("Walk");
-        }
-        else
-        {
-            animator.Play("Idle A");
-        }
+        
 
 
         if (GameManager.canMove != false)
@@ -56,8 +49,7 @@ public class CharacterMovement : MonoBehaviour
 
         }
         string output = GameManager.gameTime.ToString();
-        Debug.Log(output);
-        Debug.Log(finishLineCrossCount);        //TESTING STUFF, REMOVE
+       
         cc.SimpleMove(Physics.gravity);
 
 

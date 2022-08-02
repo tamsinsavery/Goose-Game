@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CharacterSelect : MonoBehaviour
     public Vector3 sizeChange;
     Vector3 originalSize;
     Vector3 newSize;
+
+    public LevelSelect level;
 
     public Text description;
 
@@ -91,10 +94,17 @@ public class CharacterSelect : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             finalSelection = gooseSelected;
             
+            switch (LevelSelect.finalLevelSelect)
+            {
+                case 1:
+                    SceneManager.LoadScene("Level1");
+                    break;
+
+            }
         }
     }
 }

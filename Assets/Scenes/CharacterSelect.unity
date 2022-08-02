@@ -363,6 +363,7 @@ MonoBehaviour:
   whichGooseIsThis: 1
   goose: {fileID: 243340346}
   sizeChange: {x: 0.2, y: 0.2, z: 0.2}
+  level: {fileID: 0}
   description: {fileID: 773678301}
 --- !u!1 &511728317
 GameObject:
@@ -845,6 +846,7 @@ MonoBehaviour:
   whichGooseIsThis: 3
   goose: {fileID: 1227366814}
   sizeChange: {x: 0.002, y: 0.002, z: 0.002}
+  level: {fileID: 0}
   description: {fileID: 773678301}
 --- !u!1001 &1322225755
 PrefabInstance:
@@ -936,6 +938,7 @@ MonoBehaviour:
   whichGooseIsThis: 4
   goose: {fileID: 1371255885}
   sizeChange: {x: 0.002, y: 0.002, z: 0.002}
+  level: {fileID: 0}
   description: {fileID: 773678301}
 --- !u!1 &1757241362 stripped
 GameObject:
@@ -958,6 +961,7 @@ MonoBehaviour:
   whichGooseIsThis: 2
   goose: {fileID: 1757241362}
   sizeChange: {x: 0.2, y: 0.2, z: 0.2}
+  level: {fileID: 0}
   description: {fileID: 773678301}
 --- !u!1 &1921313633
 GameObject:
@@ -1029,7 +1033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press enter to continue
+  m_Text: Press space to continue
 --- !u!222 &1921313636
 CanvasRenderer:
   m_ObjectHideFlags: 0
