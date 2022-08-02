@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
+    
     public Text infotext;
     public Text lapsText;
 
@@ -27,6 +28,7 @@ public class LevelSelect : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                
                 SceneManager.LoadScene("CharacterSelect");
             }
         }
@@ -52,7 +54,7 @@ public class LevelSelect : MonoBehaviour
         if (other.gameObject.tag == "Level3")
         {
             infotext.text = "Level 3. Press space to continue.";
-            lapsText.text = "x laps";
+            lapsText.text = "8 laps";
             finalLevelSelect=3; 
 
         }

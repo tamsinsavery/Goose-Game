@@ -57,11 +57,10 @@ public class GameManager : MonoBehaviour
                 canMove = true;
 
                 timerText.text = string.Format("{0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
-
+                Debug.Log(CharacterMovement.finishLineCrossCount);
                 if (CharacterMovement.finishLineCrossCount == laps +1)
                 {
                     
-
                     game = GameState.gameOver;
                 }
                 break;

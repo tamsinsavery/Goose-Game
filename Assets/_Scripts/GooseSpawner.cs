@@ -11,10 +11,6 @@ public class GooseSpawner : MonoBehaviour
 
     CharacterSelect selection;
 
-    public GameObject plain;
-    public GameObject father;
-    public GameObject son;
-    public GameObject holyGhoost;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +18,31 @@ public class GooseSpawner : MonoBehaviour
         {
             cameras[i].gameObject.SetActive(false);
         }
+
+        for (int i = 0;i < geese.Length; i++)
+        {
+            geese[i].gameObject.SetActive(false);
+        }
         switch (CharacterSelect.finalSelection)
         {
             case 1:
-                Instantiate(plain, transform.position, transform.rotation);
+                geese[0].gameObject.SetActive(true);
+                cameras[0].gameObject.SetActive(true);
+                break;
+            case 2:
+                geese[1].gameObject.SetActive(true);
                 cameras[1].gameObject.SetActive(true);
+                break;
+            case 3:
+                geese[2].gameObject.SetActive(true);
+                cameras[2].gameObject.SetActive(true);
+                break;
+            case 4:
+                geese[3].gameObject.SetActive(true);
+                cameras[3].gameObject.SetActive(true);
+                break;
+                default:
+                Debug.Log("Failure - invalid character input");
                 break;
         }
 

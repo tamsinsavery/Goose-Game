@@ -103,7 +103,12 @@ public class CharacterSelect : MonoBehaviour
                 case 1:
                     SceneManager.LoadScene("Level1");
                     break;
-
+                case 2:
+                    SceneManager.LoadScene("Level2");
+                    break;
+                case 3:
+                    SceneManager.LoadScene("Level3");
+                    break;
             }
         }
     }
